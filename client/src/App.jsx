@@ -1,0 +1,30 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
+import { ToastProvider } from './context/ToastContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import ErrorBoundary from './components/ErrorBoundary';
+import AppLayout from './layouts/AppLayout';
+import LoginPage from './pages/LoginPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
+import DashboardPage from './pages/DashboardPage';
+import PatientsPage from './pages/PatientsPage';
+import NewPatientPage from './pages/NewPatientPage';
+import PatientProfilePage from './pages/PatientProfilePage';
+import VisitsPage from './pages/VisitsPage';
+import NewVisitPage from './pages/NewVisitPage';
+import VisitDetailPage from './pages/VisitDetailPage';
+import ConsultationsPage from './pages/ConsultationsPage';
+import ConsultationDetailPage from './pages/ConsultationDetailPage';
+import MedicinesPage from './pages/MedicinesPage';
+import MedicineIssuancePage from './pages/MedicineIssuancePage';
+import IssuanceHistoryPage from './pages/IssuanceHistoryPage';
+import StaffPage from './pages/StaffPage';
+import ReportsPage from './pages/ReportsPage';
+import ActivityLogsPage from './pages/ActivityLogsPage';
+import SettingsPage from './pages/SettingsPage';
+import UnauthorizedPage from './pages/UnauthorizedPage';
+import NotFoundPage from './pages/NotFoundPage';
+
+const guard=(element,permission)=><ProtectedRoute permission={permission}>{element}</ProtectedRoute>;
+export default function App(){return <ErrorBoundary><ThemeProvider><ToastProvider><AuthProvider><Routes><Route path="/login" element={<LoginPage/>}/><Route path="/reset-password" element={<ResetPasswordPage/>}/><Route path="/" element={guard(<AppLayout/>)}><Route index element={<Navigate to="/dashboard" replace/>}/><Route path="dashboard" element={guard(<DashboardPage/>,'dashboard.view')}/><Route path="patients" element={guard(<PatientsPage/>,'patients.view')}/><Route path="patients/new" element={guard(<NewPatientPage/>,'patients.create')}/><Route path="patients/:id" element={guard(<PatientProfilePage/>,'patients.view')}/><Route path="visits" element={guard(<VisitsPage/>,'visits.view')}/><Route path="visits/new" element={guard(<NewVisitPage/>,'visits.create')}/><Route path="visits/:id" element={guard(<VisitDetailPage/>,'visits.view')}/><Route path="consultations" element={guard(<ConsultationsPage/>,'consultations.view')}/><Route path="consultations/:id" element={guard(<ConsultationDetailPage/>,'consultations.view')}/><Route path="medicines" element={guard(<MedicinesPage/>,'medicines.view')}/><Route path="medicine-issuance" element={guard(<MedicineIssuancePage/>,'issuance.create')}/><Route path="medicine-issuance/history" element={guard(<IssuanceHistoryPage/>,'issuance.view')}/><Route path="staff" element={guard(<StaffPage/>,'staff.view')}/><Route path="reports" element={guard(<ReportsPage/>,'reports.view')}/><Route path="activity" element={guard(<ActivityLogsPage/>,'activity.view')}/><Route path="settings" element={guard(<SettingsPage/>,'settings.view')}/><Route path="unauthorized" element={<UnauthorizedPage/>}/></Route><Route path="*" element={<NotFoundPage/>}/></Routes></AuthProvider></ToastProvider></ThemeProvider></ErrorBoundary>;}

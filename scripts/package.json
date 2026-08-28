@@ -1,0 +1,13 @@
+{
+  "name": "school-emr-supabase-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bootstrap": "node bootstrap-users.mjs",
+    "seed": "node seed-demo.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.8",
+    "dotenv": "^16.5.0"
+  }
+}

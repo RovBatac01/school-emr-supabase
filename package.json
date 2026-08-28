@@ -1,0 +1,21 @@
+{
+  "name": "school-clinic-emr-supabase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm --prefix client install && npm --prefix scripts install",
+    "dev": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "preview": "npm --prefix client run preview",
+    "bootstrap": "npm --prefix scripts run bootstrap",
+    "seed": "npm --prefix scripts run seed",
+    "verify": "node validation/validate-project.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "supabase": "^2.116.0"
+  }
+}
